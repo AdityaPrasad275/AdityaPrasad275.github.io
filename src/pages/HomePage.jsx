@@ -33,7 +33,7 @@ function HomePage() {
       <div className="noise" aria-hidden="true" />
       <header className="site-header">
         <div className="header-inner">
-          <p className="brand">ANP</p>
+          <p className="brand">AP</p>
           <nav aria-label="Primary">
             <a href="#experience">Experience</a>
             <a href="#education">Education</a>

@@ -46,7 +46,7 @@ function BlogPostPage({ slug }) {
       <div className="noise" aria-hidden="true" />
       <header className="site-header blog-header">
         <div className="header-inner">
-          <p className="brand">ANP</p>
+          <p className="brand">AP</p>
           <nav aria-label="Blog navigation">
             <a href="/">Home</a>
             <a href="/#blogs">All posts</a>
