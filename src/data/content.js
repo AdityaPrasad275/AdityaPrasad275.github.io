@@ -2,7 +2,7 @@ export const profile = {
   name: 'Aditya N Prasad',
   email: 'adityanprasad275@gmail.com',
   github: 'https://github.com/AdityaPrasad275',
-  resume: 'https://drive.google.com/file/d/191-21Px7R8ZN9N_8Xb33KRAfOm2sCGmA/view?usp=sharing',
+  resume: 'https://drive.google.com/file/d/1cJMfxhBUDDLiEUZOdhxmlCvadD3NmNc8/view?usp=sharing',
   tagline: 'I build high-velocity web products and data systems.',
   intro:
     'Engineer focused on fast experimentation, practical AI tooling, and data-heavy products that are useful in the real world.'
@@ -37,7 +37,7 @@ export const projects = [
 export const experiences = [
   {
     company: 'Ola Electric',
-    role: 'Graduate Engineer Trainee',
+    role: 'Software Engineer - Battery Intelligence Team',
     period: 'June 2025 - Present',
     logo: '/logos/ola-electric.png',
     logoMode: 'trim',
