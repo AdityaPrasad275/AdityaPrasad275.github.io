@@ -1,5 +1,3 @@
-latex
-
 %-------------------------
 % Resume in Latex
 % Author : Jake Gutierrez
@@ -123,7 +121,8 @@ latex
 
 \begin{center}
     \textbf{\Huge \scshape Aditya N Prasad} \\ \vspace{1pt}
-    \href{mailto:adityanprasad275@gmail.com}{\underline{adityanprasad275@gmail.com}} $|$ \href{https://github.com/AdityaPrasad275}{\underline{github.com/AdityaPrasad275}}
+    \href{mailto:adityanprasad275@gmail.com}{\underline{adityanprasad275@gmail.com}} $|$ \href{https://github.com/AdityaPrasad275}{\underline{github.com/AdityaPrasad275}} $|$
+    \href{https://adityaprasad275.github.io/}{\underline{adityaprasad275.github.io}}
 \end{center}
 
 

@@ -1,20 +1,29 @@
 import React from 'react';
 import BlogCard from '../components/BlogCard';
+import ExperienceCard from '../components/ExperienceCard';
 import ProjectCard from '../components/ProjectCard';
 import SectionTitle from '../components/SectionTitle';
-import { blogs, experienceHighlights, profile, projects } from '../data/content';
+import { blogs, education, experiences, profile, projects } from '../data/content';
 
 function HomePage() {
   const safeProfile = {
     name: profile?.name ?? 'Aditya N Prasad',
     email: profile?.email ?? '',
     github: profile?.github ?? '',
+    resume: profile?.resume ?? '#',
     tagline: profile?.tagline ?? '',
     intro: profile?.intro ?? ''
   };
   const safeBlogs = Array.isArray(blogs) ? blogs : [];
   const safeProjects = Array.isArray(projects) ? projects : [];
-  const safeHighlights = Array.isArray(experienceHighlights) ? experienceHighlights : [];
+  const safeExperiences = Array.isArray(experiences) ? experiences : [];
+  const safeEducation = {
+    institute: education?.institute ?? '',
+    logo: education?.logo ?? '',
+    degree: education?.degree ?? '',
+    minor: education?.minor ?? '',
+    graduation: education?.graduation ?? ''
+  };
 
   return (
     <>
@@ -22,40 +31,56 @@ function HomePage() {
         Skip to main content
       </a>
       <div className="noise" aria-hidden="true" />
-      <div className="page-shell">
-        <header className="site-header">
+      <header className="site-header">
+        <div className="header-inner">
           <p className="brand">ANP</p>
           <nav aria-label="Primary">
-            <a href="#blogs">Blogs</a>
-            <a href="#projects">Projects</a>
             <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#projects">Projects</a>
+            <a href="#blogs">Blogs</a>
             <a href="#contact">Contact</a>
           </nav>
-        </header>
+        </div>
+      </header>
 
+      <div className="page-shell">
         <main id="main-content">
           <section className="hero" aria-labelledby="hero-title">
             <p className="eyebrow">Portfolio + Blog</p>
             <h1 id="hero-title">{safeProfile.name}</h1>
             <p className="hero-tagline">{safeProfile.tagline}</p>
             <p className="hero-intro">{safeProfile.intro}</p>
-            <div className="hero-actions">
-              <a href="#blogs" className="btn btn-primary">
-                Read blog
-              </a>
-              <a href={safeProfile.github || '#'} target="_blank" rel="noreferrer" className="btn btn-secondary">
-                GitHub
-              </a>
+          </section>
+
+          <section id="experience" aria-labelledby="experience-heading" className="section-block">
+            <SectionTitle eyebrow="Work Experience" title="Experience" id="experience-heading" />
+            <div className="card-grid card-grid-experience">
+              {safeExperiences.map((item) => (
+                <ExperienceCard key={`${item.company}-${item.period}`} experience={item} />
+              ))}
             </div>
           </section>
 
-          <section id="blogs" aria-labelledby="blogs-heading" className="section-block">
-            <SectionTitle eyebrow="Main Focus" title="Latest Writing" id="blogs-heading" />
-            <div className="card-grid card-grid-blogs">
-              {safeBlogs.map((post) => (
-                <BlogCard key={post.slug || post.title} post={post} />
-              ))}
-            </div>
+          <section id="education" aria-labelledby="education-heading" className="section-block">
+            <SectionTitle eyebrow="Education" title="Academic Background" id="education-heading" />
+            <article className="card education-card">
+              <div className="education-top">
+                {safeEducation.logo ? (
+                  <div className="education-logo-wrap">
+                    <img src={safeEducation.logo} alt={`${safeEducation.institute} logo`} className="education-logo" loading="lazy" />
+                  </div>
+                ) : null}
+                <div className="education-title">
+                  <p className="meta">{safeEducation.graduation}</p>
+                  <h3>{safeEducation.institute}</h3>
+                </div>
+              </div>
+              <div className="education-details">
+                <p className="education-degree">{safeEducation.degree}</p>
+                <p className="education-minor">{safeEducation.minor}</p>
+              </div>
+            </article>
           </section>
 
           <section id="projects" aria-labelledby="projects-heading" className="section-block">
@@ -67,13 +92,13 @@ function HomePage() {
             </div>
           </section>
 
-          <section id="experience" aria-labelledby="experience-heading" className="section-block">
-            <SectionTitle eyebrow="Work" title="Experience Snapshot" id="experience-heading" />
-            <ul className="highlight-list">
-              {safeHighlights.map((item) => (
-                <li key={item}>{item}</li>
+          <section id="blogs" aria-labelledby="blogs-heading" className="section-block">
+            <SectionTitle eyebrow="Writing" title="Latest Blog Post" id="blogs-heading" />
+            <div className="card-grid card-grid-blogs">
+              {safeBlogs.map((post) => (
+                <BlogCard key={post.slug || post.title} post={post} />
               ))}
-            </ul>
+            </div>
           </section>
         </main>
 
@@ -85,6 +110,12 @@ function HomePage() {
           <p>
             GitHub:{' '}
             <a href={safeProfile.github || '#'}>{safeProfile.github ? safeProfile.github.replace('https://', '') : 'N/A'}</a>
+          </p>
+          <p>
+            Resume:{' '}
+            <a href={safeProfile.resume || '#'} target="_blank" rel="noreferrer">
+              {safeProfile.resume && safeProfile.resume !== '#' ? 'View resume' : 'Add resume link in src/data/content.js'}
+            </a>
           </p>
         </footer>
       </div>

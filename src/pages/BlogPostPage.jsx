@@ -44,15 +44,17 @@ function BlogPostPage({ slug }) {
   return (
     <>
       <div className="noise" aria-hidden="true" />
-      <div className="page-shell">
-        <header className="site-header blog-header">
+      <header className="site-header blog-header">
+        <div className="header-inner">
           <p className="brand">ANP</p>
           <nav aria-label="Blog navigation">
             <a href="/">Home</a>
             <a href="/#blogs">All posts</a>
           </nav>
-        </header>
+        </div>
+      </header>
 
+      <div className="page-shell">
         <main className="blog-main" id="main-content">
           {status === 'not_found' ? <p>Post not found.</p> : null}
           {status === 'error' ? <p>Could not load post content.</p> : null}
