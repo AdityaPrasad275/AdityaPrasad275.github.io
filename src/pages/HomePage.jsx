@@ -114,7 +114,7 @@ function HomePage() {
           <p>
             Resume:{' '}
             <a href={safeProfile.resume || '#'} target="_blank" rel="noreferrer">
-              {safeProfile.resume && safeProfile.resume !== '#' ? 'View resume' : 'Add resume link in src/data/content.js'}
+              {safeProfile.resume && safeProfile.resume !== '#' ? 'G-Drive Link' : 'Add resume link in src/data/content.js'}
             </a>
           </p>
         </footer>

@@ -2,7 +2,7 @@ export const profile = {
   name: 'Aditya N Prasad',
   email: 'adityanprasad275@gmail.com',
   github: 'https://github.com/AdityaPrasad275',
-  resume: 'https://drive.google.com/file/d/1lAOrU5yTJOmLzFK3xdQhsgZLB_9ow0sT/view?usp=sharing',
+  resume: 'https://drive.google.com/file/d/1-JUhDnA2-E81JSIK18Oc4EkHYN4DRnmt/view?usp=sharing',
   tagline: 'I build high-velocity web products and data systems.',
   intro:
     'Engineer focused on fast experimentation, practical AI tooling, and data-heavy products that are useful in the real world.'
