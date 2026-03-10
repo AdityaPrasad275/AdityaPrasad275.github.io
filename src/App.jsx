@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BlogPostPage from './pages/BlogPostPage';
 import HomePage from './pages/HomePage';
+import 'highlight.js/styles/github-dark.css';
 
 function getRouteFromHash() {
   const raw = window.location.hash.replace(/^#/, '');

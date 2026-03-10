@@ -16,6 +16,14 @@ export const blogs = [
     date: '2026-02-12',
     href: '/#/blog/speed-dating',
     source: '/speed_dating.md'
+  },
+  {
+    slug: 'database_step0',
+    title: 'Building a Database from Scratch Step 0 - KV store',
+    summary: 'Exploring the fundamentals of database design by building a simple persistent key-value store from scratch.',
+    date: '2026-03-10',
+    href: '/#/blog/database_step0',
+    source: '/database_step0.md'
   }
 ];
 
