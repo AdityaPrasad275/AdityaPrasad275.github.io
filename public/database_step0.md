@@ -1,6 +1,8 @@
 
 *A tiny persistent key–value store*
 
+Note: All code can be found in the github repo [github.com/AdityaPrasad275/AtlasDB](https://github.com/AdityaPrasad275/AtlasDB)
+
 ## The fairly non-technical story
 
 ### Overview
