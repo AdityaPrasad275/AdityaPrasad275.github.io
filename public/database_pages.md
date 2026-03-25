@@ -1,3 +1,7 @@
+*Handling memory ourselves!*
+
+Note: All code can be found in the github repo [github.com/AdityaPrasad275/AtlasDB](https://github.com/AdityaPrasad275/AtlasDB) , specifically in the branch `feature-pages`
+
 # Hashmap, you gotta go
 
 In **Step 0**, we built a tiny persistent database.

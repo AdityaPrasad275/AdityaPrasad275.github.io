@@ -1,7 +1,7 @@
 
 *A tiny persistent key–value store*
 
-Note: All code can be found in the github repo [github.com/AdityaPrasad275/AtlasDB](https://github.com/AdityaPrasad275/AtlasDB)
+Note: All code can be found in the github repo [github.com/AdityaPrasad275/AtlasDB](https://github.com/AdityaPrasad275/AtlasDB) , specifically in the branch `step0`
 
 ## The fairly non-technical story
 
