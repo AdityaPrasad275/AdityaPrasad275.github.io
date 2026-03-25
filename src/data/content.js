@@ -10,12 +10,12 @@ export const profile = {
 
 export const blogs = [
   {
-    slug: 'speed-dating',
-    title: 'I Tried Launching Speed Dating 48 Hours Before Valentine’s',
-    summary: 'Build, distribution, waitlist reality, and what this experiment taught me about trust and quality.',
-    date: '2026-02-12',
-    href: '/#/blog/speed-dating',
-    source: '/speed_dating.md'
+    slug: 'database_pages',
+    title: 'Building a Database from Scratch - Pages',
+    summary: 'Designing a simple page-based storage engine with efficient read/write and crash consistency.',
+    date: '2026-03-25',
+    href: '/#/blog/database_pages',
+    source: '/database_pages.md'
   },
   {
     slug: 'database_step0',
@@ -24,6 +24,14 @@ export const blogs = [
     date: '2026-03-10',
     href: '/#/blog/database_step0',
     source: '/database_step0.md'
+  },
+  {
+    slug: 'speed-dating',
+    title: 'I Tried Launching Speed Dating 48 Hours Before Valentine’s',
+    summary: 'Build, distribution, waitlist reality, and what this experiment taught me about trust and quality.',
+    date: '2026-02-12',
+    href: '/#/blog/speed-dating',
+    source: '/speed_dating.md'
   }
 ];
 
