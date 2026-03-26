@@ -10,6 +10,14 @@ export const profile = {
 
 export const blogs = [
   {
+    slug: 'database_storing_records',
+    title: 'Building a Database from Scratch - Storing Records',
+    summary: 'Designing a simple record storage format with efficient read/write and crash consistency.',
+    date: '2026-03-26',
+    href: '/#/blog/database_storing_records',
+    source: '/database_storing_records.md'
+  },
+  {
     slug: 'database_pages',
     title: 'Building a Database from Scratch - Pages',
     summary: 'Designing a simple page-based storage engine with efficient read/write and crash consistency.',
