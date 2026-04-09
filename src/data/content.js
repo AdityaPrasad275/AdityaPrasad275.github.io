@@ -10,6 +10,30 @@ export const profile = {
 
 export const blogs = [
   {
+    slug: 'database_btree_vs_heap_benchmark',
+    title: 'Benchmarking AtlasDB: Heap Scan vs B+ Tree Index',
+    summary: 'Fair comparison of scan-based queries vs indexed lookups, showing how B+ trees transform query performance.',
+    date: '2026-03-28',
+    href: '/#/blog/database_btree_vs_heap_benchmark',
+    source: '/database_btree_vs_heap_benchmark.md'
+  },
+  {
+    slug: 'database_TableWithIndex',
+    title: 'Building a Database from Scratch - TableWithIndex',
+    summary: 'Composing heap tables and B+ trees into a cohesive query layer with honest indexed vs scan access paths.',
+    date: '2026-03-27',
+    href: '/#/blog/database_TableWithIndex',
+    source: '/database_TableWithIndex.md'
+  },
+  {
+    slug: 'database_b_plus_tree',
+    title: 'Building a Database from Scratch - B+ Tree',
+    summary: 'Designing a B+ tree index for fast key lookups and efficient range scans with ordered leaf traversal.',
+    date: '2026-03-26',
+    href: '/#/blog/database_b_plus_tree',
+    source: '/database_B_ plus_tree.md'
+  },
+  {
     slug: 'database_storing_records',
     title: 'Building a Database from Scratch - Storing Records',
     summary: 'Designing a simple record storage format with efficient read/write and crash consistency.',

@@ -699,3 +699,67 @@ main[id] {
   border-radius: 0;
   color: var(--text);
 }
+
+.markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.markdown-content table thead {
+  background: var(--surface-2);
+  border-bottom: 2px solid var(--border);
+}
+
+.markdown-content table th {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.markdown-content table td {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.markdown-content table tr:hover {
+  background: rgba(255, 31, 31, 0.02);
+}
+
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+/* Wrap tables in a scrollable container on mobile */
+@media (max-width: 700px) {
+  .markdown-content table {
+    font-size: 0.85rem;
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border);
+  }
+
+  .markdown-content table th {
+    padding: 0.6rem 0.4rem;
+    white-space: nowrap;
+    min-width: 80px;
+  }
+
+  .markdown-content table td {
+    padding: 0.6rem 0.4rem;
+    white-space: nowrap;
+  }
+
+  .markdown-content img {
+    margin: 0.75rem 0;
+  }
+}
