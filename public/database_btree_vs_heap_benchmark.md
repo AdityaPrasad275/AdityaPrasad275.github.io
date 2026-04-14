@@ -1,45 +1,12 @@
 Benchmarking AtlasDB: Heap Scan vs B+ Tree Index
 
-*The benchmark only became interesting once the comparison became honest.*
+*A query-shaped benchmark for the real read/write tradeoff.*
 
 Note: All code can be found in the github repo [github.com/AdityaPrasad275/AtlasDB](https://github.com/AdityaPrasad275/AtlasDB)
 
-## The first benchmark was wrong
 
-The first time I tried to benchmark "heap vs B+ tree", I was comparing:
 
-- heap reads by direct `RID`
-- B+ tree reads by key
-
-That sounds reasonable for about five seconds.
-
-Then you realize it is not the same operation at all.
-
-A direct heap `RID` lookup is:
-
-`RID -> row`
-
-An indexed lookup is:
-
-`key -> B+ tree -> RID -> row`
-
-Those are different abstraction levels.
-
-The fair comparison is:
-
-- non-indexed path: `key -> scan heap rows until match -> row`
-- indexed path: `key -> B+ tree -> RID -> heap row`
-
-That is why AtlasDB needed two things before benchmarking meant anything:
-
-- heap scan support in `Table`
-- a `TableWithIndex` layer that exposes both access paths under one contract
-
-Only after that could I say I was benchmarking query performance instead of random storage primitives.
-
-## What we are actually comparing now
-
-The benchmark story is now much cleaner.
+## What we are actually comparing
 
 For point queries:
 
@@ -67,7 +34,7 @@ I ended up splitting benchmark intent into two categories.
 
 ### Storage-scale profiles
 
-These are the old heavyweight profiles:
+These are the heavyweight profiles:
 
 - `quick`
 - `dev`
@@ -76,7 +43,7 @@ These are the old heavyweight profiles:
 
 They are useful for storage-layer scaling and general pressure testing.
 
-### Query-comparison profiles
+### Query benchmark profiles
 
 These are the profiles that matter for heap-scan-vs-index comparisons:
 
@@ -245,11 +212,11 @@ They show why the leaf-layer design exists at all.
 
 ![Range Query Speedup - Cold](/plots/range_query_speedup_cold.svg)
 
-## Result 4: the benchmark now reflects the real tradeoff
+## Result 4: the benchmark reflects the real tradeoff
 
 This is the part I like most.
 
-The current benchmark tells a story that actually makes sense:
+The benchmark tells a story that matches the actual access paths:
 
 - heap-only insert is cheaper
 - indexed insert is more expensive
@@ -259,10 +226,6 @@ The current benchmark tells a story that actually makes sense:
 - index-based range lookup remains practical because the B+ tree can seek and iterate
 
 That is a real storage-engine story.
-
-The old benchmark did not tell that story because the paths were not comparable.
-
-This one does.
 
 ## Warm vs cold
 
@@ -303,7 +266,7 @@ That is a much narrower and much more useful claim.
 
 The main value was not just getting big speedup numbers.
 
-The main value was forcing the architecture to become more honest.
+The main value was forcing the architecture to support both access paths cleanly.
 
 To run this benchmark properly, AtlasDB had to grow:
 
@@ -314,19 +277,11 @@ To run this benchmark properly, AtlasDB had to grow:
 
 So the benchmark ended up acting like a design test.
 
-If the comparison was unfair, the architecture was incomplete.
-
-Once the comparison became fair, the storage engine had crossed an important line: it could answer the same logical query through either a scan path or an indexed path.
+By the time these measurements existed, the storage engine could answer the same logical query through either a scan path or an indexed path.
 
 That is the real milestone.
 
 ## If I had to summarize the whole thing in one sentence
-
-The benchmark finally got interesting when AtlasDB stopped comparing:
-
-`heap internals vs index internals`
-
-and started comparing:
 
 `scan path vs indexed path`
 
@@ -340,4 +295,4 @@ The `TableWithIndex` post is the one about making that data structure useful.
 
 This post is the payoff:
 
-once the pieces were connected properly, the numbers started telling the exact story you would expect from a real index.
+the numbers tell the exact story you would expect from a real index.
