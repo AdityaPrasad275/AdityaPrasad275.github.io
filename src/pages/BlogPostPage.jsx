@@ -48,8 +48,8 @@ function BlogPostPage({ slug }) {
         <div className="header-inner">
           <p className="brand">AP</p>
           <nav aria-label="Blog navigation">
-            <a href="/">Home</a>
-            <a href="/#blogs">All posts</a>
+            <a href="/#/">Home</a>
+            <a href="/#/blog">All posts</a>
           </nav>
         </div>
       </header>

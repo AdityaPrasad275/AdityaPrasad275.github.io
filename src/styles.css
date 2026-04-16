@@ -154,6 +154,38 @@ main[id] {
   line-height: 1.65;
 }
 
+.hero-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.35rem;
+}
+
+.hero-icon-link {
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.hero-icon-link:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.hero-icon-link svg {
+  width: 21px;
+  height: 21px;
+  fill: currentColor;
+}
+
 .hero-actions {
   display: flex;
   gap: 0.8rem;
@@ -198,6 +230,20 @@ main[id] {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3.2rem);
   letter-spacing: 0.02em;
+}
+
+.section-header-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.section-action {
+  color: var(--text);
+  font-weight: 700;
+  text-underline-offset: 3px;
+  white-space: nowrap;
 }
 
 .card-grid {
@@ -309,6 +355,12 @@ main[id] {
   font-size: 0.86rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.experience-summary {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
 .experience-points {
@@ -497,6 +549,17 @@ main[id] {
     padding: 2.75rem 0;
   }
 
+  .section-header-row {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .section-action {
+    display: inline-block;
+    margin-top: 0.1rem;
+  }
+
   .card-grid {
     margin-top: 1.2rem;
     gap: 1.15rem;
@@ -554,6 +617,18 @@ main[id] {
     padding: 1.35rem 0 3.6rem;
   }
 
+  .blog-list-main {
+    padding: 1.35rem 0 3.6rem;
+  }
+
+  .blog-list-hero {
+    padding-bottom: 1.55rem;
+  }
+
+  .blog-list-hero h1 {
+    font-size: clamp(2.25rem, 11vw, 3.5rem);
+  }
+
   .blog-article h1 {
     font-size: clamp(2rem, 10.5vw, 3.25rem);
   }
@@ -595,6 +670,39 @@ main[id] {
 .blog-main {
   padding: 1.2rem 0 3.2rem;
   min-width: 0;
+}
+
+.blog-list-main {
+  padding: 1.2rem 0 3.2rem;
+}
+
+.blog-list-hero {
+  max-width: 760px;
+  padding: 0 0 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-list-hero h1 {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.7rem, 8vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+}
+
+.blog-list-hero p:last-child {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  max-width: 58ch;
+  line-height: 1.65;
+}
+
+.blog-list-section {
+  padding-top: 1.5rem;
+}
+
+.blog-list-grid {
+  margin-top: 0;
 }
 
 .blog-article {

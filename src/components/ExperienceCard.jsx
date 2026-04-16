@@ -3,6 +3,7 @@ import React from 'react';
 function ExperienceCard({ experience }) {
   const safeExperience = experience ?? {};
   const highlights = Array.isArray(safeExperience.highlights) ? safeExperience.highlights : [];
+  const summary = safeExperience.summary ?? '';
 
   return (
     <article className="card experience-card">
@@ -23,6 +24,7 @@ function ExperienceCard({ experience }) {
         </div>
       </div>
       <p className="experience-period">{safeExperience.period ?? ''}</p>
+      {summary ? <p className="experience-summary">{summary}</p> : null}
       {highlights.length > 0 ? (
         <ul className="experience-points">
           {highlights.map((point) => (

@@ -2,6 +2,8 @@ export const profile = {
   name: 'Aditya N Prasad',
   email: 'adityanprasad275@gmail.com',
   github: 'https://github.com/AdityaPrasad275',
+  linkedin: 'https://www.linkedin.com/in/adityanpd/',
+  twitter: 'https://x.com/adityanprasad74',
   resume: 'https://drive.google.com/file/d/1-JUhDnA2-E81JSIK18Oc4EkHYN4DRnmt/view?usp=sharing',
   tagline: 'I build high-velocity web products and data systems.',
   intro:
@@ -69,6 +71,13 @@ export const blogs = [
 
 export const projects = [
   {
+    name: 'AtlasDB',
+    stack: 'C++, B+ Tree',
+    summary:
+      'Relational DB engine with page-based storage, SELECT/JOIN/GROUP BY support, B+ tree indexing, LRU buffer pool, and ARIES-style WAL recovery.',
+    github: 'https://github.com/AdityaPrasad275/AtlasDB'
+  },
+  {
     name: 'InteReview.ai',
     stack: 'React, Express, LLM workflows',
     summary: 'Mock interview chatbot with reviewer loop and retrieval-augmented prompts.',
@@ -89,23 +98,16 @@ export const experiences = [
     period: 'June 2025 - Present',
     logo: '/logos/ola-electric.png',
     logoMode: 'trim',
-    highlights: [
-      'Engineered a full-stack data exploration platform (React + Python microservices + Arrow IPC) for low-latency display of 600k+ time-series points and 50+ experiment parameters.',
-      'Built a high-volume Polars + Parquet processing pipeline for 2000+ battery cells per batch, reducing runtime from 20+ minutes to about 3 minutes.',
-      'Designed a Django + DRF data model for cross-process lineage tracking across 12 battery manufacturing steps with 100+ dynamic JSON parameters.',
-      'Developed automated batch analytics on Linux VM (rclone + Uvicorn) to continuously generate plots and KPI dashboards for faster decision-making.'
-    ]
+    summary:
+      'Building data-heavy internal tools for battery intelligence, with a focus on fast exploration, analytics pipelines, and reliable experiment workflows.'
   },
   {
     company: 'Accenture',
     role: 'Advanced Application Engineering Intern',
     period: 'May 2024 - July 2024',
     logo: '/logos/accenture.png',
-    highlights: [
-      'Integrated GenAI solutions into Oracle Fusion Cloud to reduce manual effort and improve HR operational efficiency.',
-      'Automated HR workflows for a US client with a $5M budget, reducing 120+ personnel hours of manual workload.',
-      'Streamlined payroll, hiring, and absence management across 20+ departments supporting 30,000+ employees.'
-    ]
+    summary:
+      'Worked on enterprise HR automation and GenAI-assisted Oracle Fusion Cloud workflows for a large US client.'
   }
 ];
 
