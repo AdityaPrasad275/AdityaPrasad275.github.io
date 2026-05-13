@@ -4,7 +4,7 @@ export const profile = {
   github: 'https://github.com/AdityaPrasad275',
   linkedin: 'https://www.linkedin.com/in/adityanpd/',
   twitter: 'https://x.com/adityanprasad74',
-  resume: 'https://drive.google.com/file/d/1-JUhDnA2-E81JSIK18Oc4EkHYN4DRnmt/view?usp=sharing',
+  resume: 'https://drive.google.com/file/d/1oxoejlLTQYkyca1AfjjMnWuHbrLjyLp0/view?usp=sharing',
   tagline: 'I build high-velocity web products and data systems.',
   intro:
     'Engineer focused on fast experimentation, practical AI tooling, and data-heavy products that are useful in the real world.'
