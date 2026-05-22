@@ -19,7 +19,7 @@ function ReelContent({ reel, index, total, links }) {
         <div className="flex flex-1 items-center">
           <div className="max-w-[22rem] space-y-4">
             <p className="text-xs uppercase tracking-[0.36em] text-white/55">{content.kicker}</p>
-            <h2 className="text-2xl font-semibold leading-[0.95] sm:text-5xl">{content.title}</h2>
+            <h2 className="text-5xl font-semibold leading-[0.95] sm:text-3xl">{content.title}</h2>
             <p className="max-w-[22rem] text-base leading-7 text-white/88 sm:text-lg">{content.summary}</p>
 
             {Array.isArray(content.points) && content.points.length > 0 ? (
