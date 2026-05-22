@@ -8,8 +8,44 @@ function getInitials(name = '') {
   return name.replace(/[^a-zA-Z0-9]/g, '').slice(0, 2).toUpperCase() || '?'
 }
 
-function CommentSheet({ reel, onClose }) {
+function CommentSheet({ reel, layout = 'mobile', onClose }) {
   const comments = reel?.engagement?.comments ?? []
+
+  if (layout === 'desktop') {
+    return (
+      <div className="fixed inset-0 z-30 bg-black/40" onClick={onClose}>
+        <aside
+          className="absolute right-8 top-1/2 z-10 flex h-[min(72vh,46rem)] w-[min(26rem,calc(100vw-4rem))] -translate-y-1/2 flex-col rounded-[2rem] border border-white/10 bg-zinc-950/96 px-5 pb-6 pt-5 shadow-2xl backdrop-blur xl:right-10 xl:w-[28rem]"
+          onClick={(event) => event.stopPropagation()}
+        >
+          <div className="mx-auto mb-5 h-1.5 w-12 rounded-full bg-white/18" />
+          <div className="border-b border-white/10 pb-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/45">Discussion</p>
+            <h3 className="mt-2 text-lg font-semibold text-white">Comments</h3>
+          </div>
+
+          <div className="min-h-0 flex-1 space-y-3 overflow-y-auto py-4 pr-1">
+            {comments.map((comment, index) => (
+              <article
+                key={`${comment.name}-${index}`}
+                className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-[10px] font-semibold text-white/80">
+                    {getInitials(comment.name)}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold text-white">{comment.name}</p>
+                    <p className="mt-1 text-sm leading-6 text-white/88">{comment.text}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </aside>
+      </div>
+    )
+  }
 
   return (
     <div className="fixed inset-0 z-30 bg-black/55" onClick={onClose}>

@@ -1,9 +1,11 @@
-function ProfileScreen({ isActive }) {
+function ProfileScreen({ isActive, layout = 'mobile' }) {
   return (
     <section
       aria-hidden={!isActive}
-      className={`fixed inset-0 bg-zinc-950 text-white transition-opacity duration-200 ${
-        isActive ? 'opacity-100' : 'pointer-events-none opacity-0'
+      className={`bg-zinc-950 text-white transition-opacity duration-200 ${
+        layout === 'mobile'
+          ? `fixed inset-0 ${isActive ? 'opacity-100' : 'pointer-events-none opacity-0'}`
+          : `relative h-full min-h-0 ${isActive ? 'opacity-100' : 'pointer-events-none opacity-0'}`
       }`}
     >
       <div className="flex h-full flex-col items-center justify-center gap-3 px-6 pb-24 text-center">
