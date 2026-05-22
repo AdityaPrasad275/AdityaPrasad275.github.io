@@ -9,6 +9,8 @@ function getInitials(name = '') {
 }
 
 function CommentSheet({ reel, onClose }) {
+  const comments = reel?.engagement?.comments ?? []
+
   return (
     <div className="fixed inset-0 z-30 bg-black/55" onClick={onClose}>
       <div
@@ -19,7 +21,7 @@ function CommentSheet({ reel, onClose }) {
         <h3 className="pb-4 text-center text-xs uppercase tracking-[0.34em] text-white/45">Comments</h3>
 
         <div className="space-y-3 overflow-y-auto pr-1 pb-20" style={{ maxHeight: 'calc(72vh - 7rem)' }}>
-          {(reel?.comments ?? []).map((comment, index) => (
+          {comments.map((comment, index) => (
             <article
               key={`${comment.name}-${index}`}
               className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3"
@@ -31,7 +33,6 @@ function CommentSheet({ reel, onClose }) {
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                     <p className="text-sm font-semibold text-white">{comment.name}</p>
-                    {/* <p className="text-xs uppercase tracking-[0.22em] text-white/45">{comment.handle}</p> */}
                   </div>
                   <p className="mt-1 text-sm leading-6 text-white/88">{comment.text}</p>
                 </div>

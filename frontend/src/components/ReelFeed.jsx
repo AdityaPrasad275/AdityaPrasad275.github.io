@@ -144,11 +144,12 @@ function ReelFeed({ isActive }) {
     setOpenCommentsId((current) => (current === reelId ? null : reelId))
   }
 
-  const handleShare = async (reelId) => {
-    const copied = await copyText(WEBSITE_URL)
+  const handleShare = async (reel) => {
+    const shareUrl = new URL(reel.canonicalUrl ?? '/', WEBSITE_URL).href
+    const copied = await copyText(shareUrl)
 
     if (copied) {
-      setShareCopiedId(reelId)
+      setShareCopiedId(reel.id)
 
       if (shareCopyTimerRef.current) window.clearTimeout(shareCopyTimerRef.current)
 
@@ -190,7 +191,7 @@ function ReelFeed({ isActive }) {
             shareCopied={shareCopiedId === reel.id}
             onLike={() => toggleLike(reel.id)}
             onComment={() => openComments(reel.id)}
-            onShare={() => handleShare(reel.id)}
+            onShare={() => handleShare(reel)}
             onStopPointerDown={stopPointerDown}
           />
         ))}

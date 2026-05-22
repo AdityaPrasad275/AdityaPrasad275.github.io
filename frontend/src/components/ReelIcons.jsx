@@ -39,7 +39,7 @@ function SocialIcon({ type }) {
 }
 
 function ActionIcon({ type, active = false }) {
-  const common = { 'aria-hidden': true, size: 24, strokeWidth: 2, absoluteStrokeWidth: true }
+  const common = { 'aria-hidden': true, size: 30, strokeWidth: 2, absoluteStrokeWidth: true }
 
   if (type === 'heart') return <Heart {...common} fill={active ? 'currentColor' : 'none'} />
   if (type === 'comment') return <MessageCircle {...common} />
