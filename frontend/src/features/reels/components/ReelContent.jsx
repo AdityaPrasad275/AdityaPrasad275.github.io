@@ -1,4 +1,4 @@
-import { SocialIcon } from './ReelIcons.jsx'
+import { SocialIcon } from '../../../components/Icons'
 
 function ReelContent({ reel, index, total, links }) {
   const { content, theme } = reel

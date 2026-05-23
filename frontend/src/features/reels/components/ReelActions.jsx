@@ -1,5 +1,4 @@
-import { ActionIcon } from './ReelIcons.jsx'
-
+import { ActionIcon } from '../../../components/Icons'
 function ReelActions({ liked, commentOpen, shareCopied, onLike, onComment, onShare, onStopPointerDown }) {
   return (
     <div className="flex flex-col items-center gap-2 text-white/90">
