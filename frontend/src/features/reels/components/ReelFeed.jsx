@@ -7,6 +7,13 @@ import reels from '../data/reels.js'
 
 const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL || window.location.origin
 
+function getInitialReelIndex() {
+  const currentPath = window.location.pathname
+  const reelIndex = reels.findIndex((reel) => reel.canonicalUrl === currentPath)
+
+  return reelIndex >= 0 ? reelIndex : 0
+}
+
 async function copyText(value) {
   if (navigator.clipboard?.writeText) {
     try {
@@ -25,7 +32,7 @@ async function copyText(value) {
   document.body.appendChild(textarea)
   textarea.select()
 
-  let copied = false
+  let copied
 
   try {
     copied = document.execCommand('copy')
@@ -38,17 +45,27 @@ async function copyText(value) {
 }
 
 function ReelFeed({ isActive, layout = 'mobile' }) {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(getInitialReelIndex)
   const [likedReels, setLikedReels] = useState({})
   const [openCommentsId, setOpenCommentsId] = useState(null)
   const [shareCopiedId, setShareCopiedId] = useState(null)
   const shareCopyTimerRef = useRef(null)
+  const landedOnHomeRef = useRef(window.location.pathname === '/')
 
   useEffect(() => {
     return () => {
       if (shareCopyTimerRef.current) window.clearTimeout(shareCopyTimerRef.current)
     }
   }, [])
+
+  useEffect(() => {
+    const activeReel = reels[activeIndex]
+
+    if (!activeReel?.canonicalUrl) return
+    if (landedOnHomeRef.current && activeIndex === 0) return
+
+    window.history.replaceState(null, '', activeReel.canonicalUrl)
+  }, [activeIndex])
 
   const clampIndex = (index) => Math.max(0, Math.min(reels.length - 1, index))
 

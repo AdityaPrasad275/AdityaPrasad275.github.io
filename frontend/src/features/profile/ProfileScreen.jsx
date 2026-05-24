@@ -2,14 +2,14 @@ import { useState } from 'react'
 import ProfileHeader from './components/ProfileHeader.jsx'
 import HighlightsBand from './components/HighlightsBand.jsx'
 import PostsGrid from './components/PostsGrid.jsx'
-import PostDetailModal from './components/PostDetailModal.jsx'
 import profile from './data/profile.js'
 
 function ProfileScreen({ isActive, layout = 'mobile' }) {
-  const { identity, socialProof, highlights, posts } = profile
+  const { identity, socialProof, highlights} = profile
+  const posts = [] // Placeholder rn, will assemble posts from reels later
   const [selectedPostId, setSelectedPostId] = useState(null)
 
-  const selectedPost = selectedPostId ? posts.find((p) => p.id === selectedPostId) : null
+  // const selectedPost = selectedPostId ? posts.find((p) => p.id === selectedPostId) : null
 
   return (
     <section
@@ -28,9 +28,9 @@ function ProfileScreen({ isActive, layout = 'mobile' }) {
         </div>
       </div>
 
-      {selectedPost && (
+      {/* {selectedPost && (
         <PostDetailModal post={selectedPost} onClose={() => setSelectedPostId(null)} />
-      )}
+      )} */}
     </section>
   )
 }

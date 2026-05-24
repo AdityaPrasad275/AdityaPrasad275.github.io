@@ -3,11 +3,20 @@ import { useEffect, useRef } from 'react'
 function DesktopReelScroller({ isActive, reels, activeIndex, onActiveIndexChange, renderReel }) {
   const scrollerRef = useRef(null)
   const rafRef = useRef(null)
+  const initialActiveIndexRef = useRef(activeIndex)
 
   useEffect(() => {
     return () => {
       if (rafRef.current) window.cancelAnimationFrame(rafRef.current)
     }
+  }, [])
+
+  useEffect(() => {
+    const scroller = scrollerRef.current
+
+    if (!scroller) return
+
+    scroller.scrollTo({ top: initialActiveIndexRef.current * scroller.clientHeight, behavior: 'auto' })
   }, [])
 
   const handleScroll = () => {
