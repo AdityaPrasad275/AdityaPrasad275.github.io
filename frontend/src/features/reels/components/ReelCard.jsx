@@ -4,8 +4,6 @@ import ReelMeta from './ReelMeta.jsx'
 
 function ReelCard({
   reel,
-  index,
-  total,
   layout = 'mobile',
   liked,
   commentOpen,
@@ -24,7 +22,7 @@ function ReelCard({
 
         <div className="flex min-h-0 items-center justify-center">
           <div className="h-[min(90vh,58rem)] w-[min(100%,21.5rem)] overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-950 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_24px_80px_rgba(0,0,0,0.65)]">
-            <ReelContent reel={reel} index={index} total={total} links={reel.links} />
+            <ReelContent reel={reel} />
           </div>
         </div>
 
@@ -44,14 +42,14 @@ function ReelCard({
   }
 
   return (
-    <section className="relative h-full w-full flex-none overflow-hidden">
-      <ReelContent reel={reel} index={index} total={total} links={reel.links} />
+    <section className="relative h-full w-full flex-none overflow-hidden [--reel-bottom-nav:4.75rem] [--reel-footer-space:10.5rem]">
+      <ReelContent reel={reel} layout="mobile" />
 
-      <div className="absolute left-4 bottom-4 max-w-[72%] space-y-2 pb-[env(safe-area-inset-bottom)]">
+      <div className="absolute bottom-[calc(env(safe-area-inset-bottom)+var(--reel-bottom-nav)+0.85rem)] left-4 z-30 max-w-[68%] space-y-2">
         <ReelMeta reel={reel} />
       </div>
 
-      <div className="absolute bottom-[calc(env(safe-area-inset-bottom)+5.5rem)] right-4 z-20">
+      <div className="absolute bottom-[calc(env(safe-area-inset-bottom)+var(--reel-bottom-nav)+1rem)] right-4 z-30">
         <ReelActions
           liked={liked}
           commentOpen={commentOpen}

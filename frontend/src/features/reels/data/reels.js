@@ -18,7 +18,6 @@ const reels = [
         { name: 'Nihal', text: 'Oh this is nice, insta in web' },
       ],
     },
-    links: [],
     theme: {
       accent: '#f59e0b',
       background:
@@ -44,7 +43,6 @@ const reels = [
         { name: 'Nihal', text: 'wait how do i get out of this comment section' },
       ],
     },
-    links: [],
     theme: {
       accent: '#38bdf8',
       background:
@@ -54,6 +52,7 @@ const reels = [
   {
     id: 'are-you-good',
     kind: 'reel',
+    archetype: 'statement',
     canonicalUrl: '/reels/are-you-good',
     content: {
       question: 'Are you good at it?',
@@ -70,7 +69,6 @@ const reels = [
         { name: 'Nihal', text: 'help I am TRAPPED HERE' },
       ],
     },
-    links: [],
     theme: {
       accent: '#22c55e',
       background:
@@ -96,13 +94,12 @@ const reels = [
         { name: 'Mira', text: 'He was talking too much' },
       ],
     },
-    links: [],
     theme: {
       accent: '#f97316',
       background:
         'radial-gradient(circle at top, rgba(249, 115, 22, 0.22) 0%, rgba(249, 115, 22, 0) 42%), linear-gradient(160deg, #050505 0%, #18181b 100%)',
     },
-  },
+  }, 
   {
     id: 'contact',
     kind: 'reel',
@@ -111,10 +108,10 @@ const reels = [
       question: 'How do I reach you?',
       kicker: 'Contact',
       title: 'Say hi.',
-      summary: 'Email is the fastest route. Links are here if you want more context.',
+      summary: 'Email is the fastest route. Links are in the profile',
       linkPrompt: 'Linked below.',
-      footerCaption: 'Email is fastest. Links are here if you need context.',
-      points: ['Email: adityanprasad275@gmail.com', 'GitHub, LinkedIn, Twitter, Resume'],
+      footerCaption: 'Email is fastest',
+      points: ['adityanprasad275@gmail.com', 'linkedin.com/in/adityanprasad', 'github.com/adityanprasad'],
     },
     engagement: {
       comments: [
@@ -123,19 +120,62 @@ const reels = [
         { name: 'Nihal', text: 'THEY ARE REMOVING MY EXISTENCE HELP' },
       ],
     },
-    links: [
-      { label: 'Email', href: 'mailto:adityanprasad275@gmail.com', external: false, icon: 'mail' },
-      { label: 'GitHub', href: 'https://github.com/AdityaPrasad275', external: true, icon: 'github' },
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/adityanpd/', external: true, icon: 'linkedin' },
-      { label: 'Twitter', href: 'https://x.com/adityanprasad74', external: true, icon: 'twitter' },
-      { label: 'Resume', href: 'https://adityaprasad275.github.io/aditya-prasad-resume.pdf', external: true, icon: 'resume' },
-    ],
     theme: {
       accent: '#38bdf8',
       background:
         'radial-gradient(circle at top, rgba(56, 189, 248, 0.22) 0%, rgba(56, 189, 248, 0) 44%), linear-gradient(160deg, #050505 0%, #020617 100%)',
-    },
+    }, 
   },
+  {
+    id: 'blog-posts-start',
+    kind: 'reel',
+    canonicalUrl: '/reels/blog-posts-start',
+    content: {
+      question: 'Do you write?',
+      kicker: 'Blog Posts',
+      title: 'Yup, sometimes',
+      summary: 'I like writing about the systems I build and the problems I care about.',
+      footerCaption: 'Reels from here on out are link to blog posts!'
+    },
+    engagement: {
+      comments: [
+        { name: 'Ari', text: 'email is still undefeated tbh' },
+        { name: 'Dev', text: 'links in bio energy but less annoying' },
+        { name: 'Nihal', text: 'THEY ARE REMOVING MY EXISTENCE HELP' },
+      ],
+    },
+    theme: {
+      accent: '#125f80',
+      background:
+        'radial-gradient(circle at top, rgba(56, 189, 248, 0.22) 0%, rgba(56, 189, 248, 0) 44%), linear-gradient(160deg, #050505 0%, #020617 100%)',
+    }, 
+  },
+  {
+    id: 'database-indexes',
+    kind: 'reel',
+    canonicalUrl: '/reels/database-indexes',
+    content: {
+      question: 'What are database indexes?',
+      kicker: 'Database Indexes',
+      title: 'Data structures that speed up queries.',
+      summary: 'Indexes are like the index of a book, but for databases. They help you find data without scanning the whole thing.',
+      points: ['B+ trees', 'Interval vs Leaf'],
+      footerCaption: 'Blog post coming soon!',
+      link: 'https://medium.com/@adityanprasad275/building-a-database-from-scratch-step-0-kv-store-d3282b554505'
+    },
+    engagement: {
+      comments: [
+        { name: 'McQueen', text: 'speed, I am speed' },
+        { name: 'Dev', text: 'A speedup of over 7000!!!!' },
+        { name: 'Nihal', text: 'Do I really exist or am i figment of authors creation' },
+      ],
+    },
+    theme: {
+      accent: '#36b11a',
+      background:
+        'radial-gradient(circle at top, rgba(56, 189, 248, 0.22) 0%, rgba(56, 189, 248, 0) 44%), linear-gradient(160deg, #050505 0%, #020617 100%)',
+    }, 
+  }
 ]
 
 export default reels

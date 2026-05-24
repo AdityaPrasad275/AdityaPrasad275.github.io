@@ -1,60 +1,62 @@
-import { SocialIcon } from '../../../components/Icons'
 
-function ReelContent({ reel, index, total, links }) {
+function ReelContent({ reel, layout = 'desktop' }) {
   const { content, theme } = reel
+  const isMobile = layout === 'mobile'
 
   return (
     <div className="relative h-full w-full overflow-hidden" style={{ background: theme.background }}>
       <div className="absolute inset-0 bg-black/28" />
       <div className="absolute inset-0" style={{ boxShadow: `inset 0 0 0 1px ${theme.accent}22` }} />
 
-      <div className="relative z-10 flex h-full w-full flex-col p-4">
+      <div
+        className={`relative z-10 flex h-full w-full flex-col ${
+          isMobile
+            ? 'px-4 pb-[calc(env(safe-area-inset-bottom)+var(--reel-bottom-nav,4.75rem)+var(--reel-footer-space,10.5rem))] pt-[calc(env(safe-area-inset-top)+1rem)]'
+            : 'p-4'
+        }`}
+      >
         <header className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.24em] text-white/75">
           <span style={{ color: theme.accent }}>{content.question}</span>
-          <span>
-            {index + 1} / {total}
-          </span>
         </header>
 
-        <div className="flex flex-1 items-center">
-          <div className="max-w-[22rem] space-y-4">
-            <p className="text-xs uppercase tracking-[0.36em] text-white/55">{content.kicker}</p>
-            <h2 className="text-5xl font-semibold leading-[0.95] sm:text-3xl">{content.title}</h2>
-            <p className="max-w-[22rem] text-base leading-7 text-white/88 sm:text-lg">{content.summary}</p>
+        <div className={`flex min-h-0 flex-1 items-center ${isMobile ? 'justify-center py-3' : ''}`}>
+          <div
+            className={
+              isMobile
+                ? 'flex aspect-[3/4] max-h-full w-full max-w-[21rem] flex-col justify-center space-y-3 overflow-hidden'
+                : 'max-w-[22rem] space-y-4'
+            }
+          >
+            <p className={`${isMobile ? 'text-[0.65rem]' : 'text-xs'} uppercase tracking-[0.36em] text-white/55`}>
+              {content.kicker}
+            </p>
+            <h2 className={`${isMobile ? 'text-[clamp(2.1rem,12vw,3.75rem)]' : 'text-5xl sm:text-3xl'} font-semibold leading-[0.95]`}>
+              {content.title}
+            </h2>
+            <p className={`${isMobile ? 'text-sm leading-6' : 'text-base leading-7 sm:text-lg'} max-w-[22rem] text-white/88`}>
+              {content.summary}
+            </p>
 
             {Array.isArray(content.points) && content.points.length > 0 ? (
-              <div className="space-y-2 pt-2">
+              <div className={`${isMobile ? 'space-y-1 pt-1' : 'space-y-2 pt-2'}`}>
                 {content.points.map((point) => (
-                  <p key={point} className="text-sm leading-6 text-white/82">
+                  <p key={point} className={`${isMobile ? 'text-xs leading-5' : 'text-sm leading-6'} text-white/82`}>
                     {point}
                   </p>
                 ))}
               </div>
             ) : null}
 
-            {content.linkPrompt ? (
-              <p className="pt-3 text-sm font-medium uppercase tracking-[0.24em] text-white/55">{content.linkPrompt}</p>
-            ) : null}
-
-            {Array.isArray(links) && links.length > 0 ? (
-              <div className="flex flex-wrap gap-3 pt-2">
-                {links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target={link.external ? '_blank' : undefined}
-                    rel={link.external ? 'noreferrer' : undefined}
-                    className="inline-flex h-8 w-8 items-center justify-center"
-                    style={{ color: theme.accent }}
-                    aria-label={link.label}
-                    title={link.label}
-                    onPointerDown={(event) => event.stopPropagation()}
-                  >
-                    <SocialIcon type={link.icon} />
-                  </a>
-                ))}
-              </div>
-            ) : null}
+            {content.link && (
+              <a
+                href={content.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-blue-400 hover:text-blue-300"
+              >
+                Read the full post
+              </a>
+            )}
           </div>
         </div>
       </div>
