@@ -1,4 +1,4 @@
-import profilePic from '../../../icons/profile-pic.png'
+import profilePic from '../../../icons/profile-pic.webp'
 
 function ProfileHeader({ identity, socialProof }) {
   return (
@@ -6,7 +6,16 @@ function ProfileHeader({ identity, socialProof }) {
       <div className="grid grid-cols-[7rem_minmax(0,1fr)] items-center gap-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-8 lg:grid-cols-[11rem_minmax(0,1fr)] lg:gap-10">
         <div className="flex justify-center">
           <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/12 bg-white/8 text-lg font-semibold tracking-[0.28em] text-white/90 shadow-[0_0_0_2px_rgba(255,255,255,0.15)] sm:h-32 sm:w-32 sm:shadow-[0_0_0_2.5px_rgba(255,255,255,0.15)] lg:h-40 lg:w-40 lg:text-2xl lg:shadow-[0_0_0_3px_rgba(255,255,255,0.15)]">
-            <img src={profilePic} alt={identity.name} className="h-full w-full object-cover" />
+            <img
+              src={profilePic}
+              alt={identity.name}
+              className="h-full w-full object-cover"
+              width="640"
+              height="640"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
           </div>
         </div>
 

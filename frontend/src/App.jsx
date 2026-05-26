@@ -28,15 +28,12 @@ function useIsDesktop() {
 }
 
 function App() {
-  const [activeTab, setActiveTab] = useState(() => {
-    if (typeof window === 'undefined') return 'reels'
-    return window.location.pathname.startsWith('/reels') ? 'reels' : 'profile'
-  })
+  const [activeTab, setActiveTab] = useState('reels')
   const isDesktop = useIsDesktop()
 
   useEffect(() => {
     const handlePopstate = () => {
-      setActiveTab(window.location.pathname.startsWith('/reels') ? 'reels' : 'profile')
+      setActiveTab('reels')
     }
 
     window.addEventListener('popstate', handlePopstate)
