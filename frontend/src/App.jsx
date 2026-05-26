@@ -28,8 +28,20 @@ function useIsDesktop() {
 }
 
 function App() {
-  const [activeTab, setActiveTab] = useState('reels')
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window === 'undefined') return 'reels'
+    return window.location.pathname.startsWith('/reels') ? 'reels' : 'profile'
+  })
   const isDesktop = useIsDesktop()
+
+  useEffect(() => {
+    const handlePopstate = () => {
+      setActiveTab(window.location.pathname.startsWith('/reels') ? 'reels' : 'profile')
+    }
+
+    window.addEventListener('popstate', handlePopstate)
+    return () => window.removeEventListener('popstate', handlePopstate)
+  }, [])
 
   return (
     <main className="fixed inset-0 overflow-hidden bg-black text-white">

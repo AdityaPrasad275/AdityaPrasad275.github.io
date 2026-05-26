@@ -133,7 +133,7 @@ const reels = [
     content: {
       question: 'Do you write?',
       kicker: 'Blog Posts',
-      title: 'Yup, sometimes',
+      title: 'Blog Posts from here on out!',
       summary: 'I like writing about the systems I build and the problems I care about.',
       footerCaption: 'Reels from here on out are link to blog posts!'
     },
