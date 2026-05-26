@@ -5,6 +5,8 @@ function MobileReelScroller({ isActive, reels, activeIndex, onActiveIndexChange,
   const [dragOffset, setDragOffset] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const gestureRef = useRef(null)
+  const dragFrameRef = useRef(null)
+  const dragTargetRef = useRef(0)
 
   useEffect(() => {
     const syncFeedHeight = () => {
@@ -25,7 +27,35 @@ function MobileReelScroller({ isActive, reels, activeIndex, onActiveIndexChange,
     }
   }, [])
 
+  useEffect(() => {
+    return () => {
+      if (dragFrameRef.current) window.cancelAnimationFrame(dragFrameRef.current)
+    }
+  }, [])
+
   const clampIndex = (index) => Math.max(0, Math.min(reels.length - 1, index))
+
+  const setDragOffsetOnFrame = (nextOffset) => {
+    dragTargetRef.current = nextOffset
+
+    if (dragFrameRef.current) return
+
+    dragFrameRef.current = window.requestAnimationFrame(() => {
+      dragFrameRef.current = null
+      setDragOffset(dragTargetRef.current)
+    })
+  }
+
+  const setDragOffsetNow = (nextOffset) => {
+    dragTargetRef.current = nextOffset
+
+    if (dragFrameRef.current) {
+      window.cancelAnimationFrame(dragFrameRef.current)
+      dragFrameRef.current = null
+    }
+
+    setDragOffset(nextOffset)
+  }
 
   const handlePointerDown = (event) => {
     if (event.button !== 0) return
@@ -38,7 +68,7 @@ function MobileReelScroller({ isActive, reels, activeIndex, onActiveIndexChange,
     }
 
     setIsDragging(true)
-    setDragOffset(0)
+    setDragOffsetNow(0)
 
     event.currentTarget.setPointerCapture(event.pointerId)
   }
@@ -54,7 +84,9 @@ function MobileReelScroller({ isActive, reels, activeIndex, onActiveIndexChange,
     if (Math.abs(deltaX) > Math.abs(deltaY)) return
 
     const maxDrag = feedHeight * 0.35
-    setDragOffset(Math.max(-maxDrag, Math.min(maxDrag, deltaY)))
+    const boundedOffset = Math.max(-maxDrag, Math.min(maxDrag, deltaY))
+
+    setDragOffsetOnFrame(boundedOffset)
   }
 
   const finishGesture = (event) => {
@@ -79,7 +111,7 @@ function MobileReelScroller({ isActive, reels, activeIndex, onActiveIndexChange,
     }
 
     setIsDragging(false)
-    setDragOffset(0)
+    setDragOffsetNow(0)
     gestureRef.current = null
 
     event.currentTarget.releasePointerCapture(event.pointerId)
@@ -101,7 +133,8 @@ function MobileReelScroller({ isActive, reels, activeIndex, onActiveIndexChange,
         className="h-full w-full"
         style={{
           transform: `translate3d(0, ${-activeIndex * feedHeight + dragOffset}px, 0)`,
-          transition: isDragging ? 'none' : 'transform 320ms cubic-bezier(0.22, 1, 0.36, 1)',
+          transition: isDragging ? 'none' : 'transform 420ms cubic-bezier(0.16, 1, 0.3, 1)',
+          willChange: 'transform',
         }}
       >
         {reels.map((reel, index) => renderReel(reel, index, 'mobile'))}

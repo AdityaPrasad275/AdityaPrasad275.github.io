@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react'
+
 function getInitials(name = '') {
   const words = name.trim().split(/\s+/).filter(Boolean)
 
@@ -10,12 +12,42 @@ function getInitials(name = '') {
 
 function CommentSheet({ reel, layout = 'mobile', onClose }) {
   const comments = reel?.engagement?.comments ?? []
+  const [isOpen, setIsOpen] = useState(false)
+  const closeTimerRef = useRef(null)
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      setIsOpen(true)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current)
+    }
+  }, [])
+
+  const closeSheet = () => {
+    setIsOpen(false)
+
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current)
+
+    closeTimerRef.current = window.setTimeout(() => {
+      onClose()
+    }, 300)
+  }
 
   if (layout === 'desktop') {
     return (
-      <div className="fixed inset-0 z-30 bg-black/40" onClick={onClose}>
+      <div
+        className={`fixed inset-0 z-30 bg-black/40 transition-opacity duration-200 ease-out ${
+          isOpen ? 'opacity-100' : 'opacity-0'
+        }`}
+        onClick={closeSheet}
+      >
         <aside
-          className="absolute right-8 top-1/2 z-10 flex h-[min(72vh,46rem)] w-[min(26rem,calc(100vw-4rem))] -translate-y-1/2 flex-col rounded-[2rem] border border-white/10 bg-zinc-950/96 px-5 pb-6 pt-5 shadow-2xl backdrop-blur xl:right-10 xl:w-[28rem]"
+          className={`absolute right-8 top-1/2 z-10 flex h-[min(72vh,46rem)] w-[min(26rem,calc(100vw-4rem))] flex-col rounded-[2rem] border border-white/10 bg-zinc-950/96 px-5 pb-6 pt-5 shadow-2xl backdrop-blur transition-all duration-300 ease-out xl:right-10 xl:w-[28rem] ${
+            isOpen ? '-translate-y-1/2 opacity-100' : 'translate-x-5 -translate-y-1/2 opacity-0'
+          }`}
           onClick={(event) => event.stopPropagation()}
         >
           <div className="mx-auto mb-5 h-1.5 w-12 rounded-full bg-white/18" />
@@ -48,9 +80,16 @@ function CommentSheet({ reel, layout = 'mobile', onClose }) {
   }
 
   return (
-    <div className="fixed inset-0 z-30 bg-black/55" onClick={onClose}>
+    <div
+      className={`fixed inset-0 z-30 bg-black/55 transition-opacity duration-200 ease-out ${
+        isOpen ? 'opacity-100' : 'opacity-0'
+      }`}
+      onClick={closeSheet}
+    >
       <div
-        className="absolute inset-x-0 bottom-0 z-10 max-h-[72vh] w-full rounded-t-[1.75rem] border border-white/10 bg-zinc-950/96 px-4 pb-[calc(env(safe-area-inset-bottom)+5rem)] pt-4 shadow-2xl backdrop-blur"
+        className={`absolute inset-x-0 bottom-0 z-10 max-h-[72vh] w-full rounded-t-[1.75rem] border border-white/10 bg-zinc-950/96 px-4 pb-[calc(env(safe-area-inset-bottom)+5rem)] pt-4 shadow-2xl backdrop-blur transition-transform duration-300 ease-out ${
+          isOpen ? 'translate-y-0' : 'translate-y-full'
+        }`}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-white/18" />
