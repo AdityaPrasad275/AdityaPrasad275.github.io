@@ -1,22 +1,16 @@
 import { FileText } from 'lucide-react'
 import { Heart, MessageCircle, Send } from 'lucide-react'
+import gmailIcon from '../icons/icons8-gmail.svg'
+import linkedinIcon from '../icons/icons8-linkedin.svg'
+import resumeIcon from '../icons/resume-svgrepo-com.svg'
 
 function SocialIcon({ type, className = 'block h-6 w-6 fill-current' }) {
   if (type === 'mail') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
-        <path d="M4 6h16v12H4V6Zm8 6.1L5.9 7.5H18.1L12 12.1Zm-1 1.5L5.5 9.5v6.9h13V9.5L13 13.6a1.7 1.7 0 0 1-2 0Z" />
-      </svg>
-    )
+    return <img src={gmailIcon} alt="Mail" className={className} />
   }
 
   if (type === 'resume') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
-        <path d="M7 4a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8.5L13.5 4H7Z" />
-        <path d="M13 4v4.5H18" />
-      </svg>
-    )
+    return <img src={resumeIcon} alt="Resume" className={className} />
   }
 
   if (type === 'github') {
@@ -28,19 +22,7 @@ function SocialIcon({ type, className = 'block h-6 w-6 fill-current' }) {
   }
 
   if (type === 'linkedin') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
-        <path d="M5.1 8.9h3.1V19H5.1V8.9Zm1.5-4.8a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6Zm3.6 4.8h3v1.4h.1c.4-.8 1.5-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.9V19H17v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-3.1V8.9Z" />
-      </svg>
-    )
-  }
-
-  if (type === 'twitter') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
-        <path d="M14 10.6 20.4 3h-1.5l-5.6 6.6L8.9 3H3.8l6.7 9.8L3.8 21h1.5l5.9-7 4.8 7h5.1L14 10.6Zm-2.1 2.5-.7-1L5.8 4.2h2.4l4.4 6.4.7 1 5.7 8.3h-2.4l-4.7-6.8Z" />
-      </svg>
-    )
+    return <img src={linkedinIcon} alt="LinkedIn" className={className} />
   }
 
   return <FileText aria-hidden="true" className={className} strokeWidth={1.9} />
