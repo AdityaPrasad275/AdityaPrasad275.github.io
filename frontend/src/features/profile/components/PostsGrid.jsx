@@ -1,7 +1,7 @@
 function PostsGrid({ posts, onSelectPost }) {
   return (
     <section className="sm:mx-0 -mx-4 sm:px-0">
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3">
         {posts.map((post) => (
           <button
             key={post.id}

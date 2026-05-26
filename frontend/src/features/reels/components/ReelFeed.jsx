@@ -49,12 +49,15 @@ function ReelFeed({ isActive, layout = 'mobile' }) {
   const [likedReels, setLikedReels] = useState({})
   const [openCommentsId, setOpenCommentsId] = useState(null)
   const [shareCopiedId, setShareCopiedId] = useState(null)
+  const [endFeedMessageVisible, setEndFeedMessageVisible] = useState(false)
   const shareCopyTimerRef = useRef(null)
+  const endFeedTimerRef = useRef(null)
   const landedOnHomeRef = useRef(window.location.pathname === '/')
 
   useEffect(() => {
     return () => {
       if (shareCopyTimerRef.current) window.clearTimeout(shareCopyTimerRef.current)
+      if (endFeedTimerRef.current) window.clearTimeout(endFeedTimerRef.current)
     }
   }, [])
 
@@ -93,6 +96,15 @@ function ReelFeed({ isActive, layout = 'mobile' }) {
         setShareCopiedId(null)
       }, 1400)
     }
+  }
+
+  const showEndFeedMessage = () => {
+    if (endFeedTimerRef.current) window.clearTimeout(endFeedTimerRef.current)
+
+    setEndFeedMessageVisible(true)
+    endFeedTimerRef.current = window.setTimeout(() => {
+      setEndFeedMessageVisible(false)
+    }, 3000)
   }
 
   const openCommentsReel = reels.find((reel) => reel.id === openCommentsId)
@@ -136,9 +148,18 @@ function ReelFeed({ isActive, layout = 'mobile' }) {
             setActiveIndex(clampIndex(nextIndex))
             setOpenCommentsId(null)
           }}
+          onAttemptNextBeyondEnd={showEndFeedMessage}
           renderReel={renderReel}
         />
       )}
+
+      <div className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center px-4">
+        <div className={`max-w-[92%] rounded-full border border-white/15 bg-black/85 px-4 py-2 text-center text-[0.78rem] font-medium uppercase tracking-[0.12em] text-white shadow-lg shadow-black/40 transition-all duration-200 ${
+          endFeedMessageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
+          you have reached the end of instagram. self destructing in T-3 seconds
+        </div>
+      </div>
 
       {openCommentsReel ? (
         <CommentSheet

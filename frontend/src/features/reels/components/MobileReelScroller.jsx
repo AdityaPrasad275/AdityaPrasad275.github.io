@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-function MobileReelScroller({ isActive, reels, activeIndex, onActiveIndexChange, renderReel }) {
+function MobileReelScroller({ isActive, reels, activeIndex, onActiveIndexChange, onAttemptNextBeyondEnd, renderReel }) {
   const [feedHeight, setFeedHeight] = useState(() => window.visualViewport?.height ?? window.innerHeight)
   const [dragOffset, setDragOffset] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
@@ -69,7 +69,13 @@ function MobileReelScroller({ isActive, reels, activeIndex, onActiveIndexChange,
     const shouldChange = Math.abs(deltaY) > threshold || Math.abs(velocity) > 0.45
 
     if (shouldChange) {
-      onActiveIndexChange(clampIndex(activeIndex + (deltaY < 0 ? 1 : -1)))
+      const nextIndex = clampIndex(activeIndex + (deltaY < 0 ? 1 : -1))
+
+      if (nextIndex === activeIndex && activeIndex === reels.length - 1 && deltaY < 0) {
+        onAttemptNextBeyondEnd?.()
+      } else {
+        onActiveIndexChange(nextIndex)
+      }
     }
 
     setIsDragging(false)

@@ -15,7 +15,7 @@ const reels = [
       comments: [
         { name: 'Maya', text: 'oh cool, this is actually clean' },
         { name: 'Arjun', text: 'battery intelligence sounds terrifyingly serious. respect.' },
-        { name: 'Nihal', text: 'Oh this is nice, insta in web' },
+        { name: 'Truman', text: 'Oh this is nice, insta in web' },
       ],
     },
     theme: {
@@ -40,7 +40,7 @@ const reels = [
       comments: [
         { name: 'Sana', text: 'oh nice, finally someone who fears broken pipelines' },
         { name: 'Ishaan', text: 'this is weirdly satisfying' },
-        { name: 'Nihal', text: 'wait how do i get out of this comment section' },
+        { name: 'Truman', text: 'wait.... wait am i real?' },
       ],
     },
     theme: {
@@ -66,7 +66,7 @@ const reels = [
       comments: [
         { name: 'Kabir', text: 'oh wow, actual shipping receipts' },
         { name: 'Tara', text: 'you can tell this person has been in the trenches' },
-        { name: 'Nihal', text: 'help I am TRAPPED HERE' },
+        { name: 'Truman', text: 'wait, am i just a figment of the authors imagination?' },
       ],
     },
     theme: {
@@ -91,7 +91,7 @@ const reels = [
       comments: [
         { name: 'Owen', text: 'okay atlasdb is actually cool' },
         { name: 'Pallavi', text: 'browser IDEs are either genius or cursed. this seems both.' },
-        { name: 'Mira', text: 'He was talking too much' },
+        { name: 'Viewer', text: 'where did that truman guy go?' },
       ],
     },
     theme: {
@@ -117,7 +117,7 @@ const reels = [
       comments: [
         { name: 'Ari', text: 'email is still undefeated tbh' },
         { name: 'Dev', text: 'links in bio energy but less annoying' },
-        { name: 'Nihal', text: 'THEY ARE REMOVING MY EXISTENCE HELP' },
+        { name: 'Mira', text: 'He was talking too much' },
       ],
     },
     theme: {
@@ -139,9 +139,7 @@ const reels = [
     },
     engagement: {
       comments: [
-        { name: 'Ari', text: 'email is still undefeated tbh' },
-        { name: 'Dev', text: 'links in bio energy but less annoying' },
-        { name: 'Nihal', text: 'THEY ARE REMOVING MY EXISTENCE HELP' },
+
       ],
     },
     theme: {
@@ -155,19 +153,19 @@ const reels = [
     kind: 'reel',
     canonicalUrl: '/reels/database-indexes',
     content: {
-      question: 'What are database indexes?',
-      kicker: 'Database Indexes',
-      title: 'Data structures that speed up queries.',
-      summary: 'Indexes are like the index of a book, but for databases. They help you find data without scanning the whole thing.',
-      points: ['B+ trees', 'Interval vs Leaf'],
-      footerCaption: 'Blog post coming soon!',
-      link: 'https://medium.com/@adityanprasad275/building-a-database-from-scratch-step-0-kv-store-d3282b554505'
+      question: 'Index vs Heaps',
+      kicker: 'Database Series',
+      title: 'Indexes and Benchmarking',
+      summary: 'Final chapter, benchmarking AtlasDB, a 7000x speedup on indexed queries vs heap scans.',
+      points: ['B+ trees'],
+      footerCaption: 'Finally we measure our DB',
+      link: 'https://medium.com/@adityanprasad275/benchmarking-atlasdb-heap-scan-vs-b-tree-index-6db61ed47c59'
     },
     engagement: {
       comments: [
         { name: 'McQueen', text: 'speed, I am speed' },
         { name: 'Dev', text: 'A speedup of over 7000!!!!' },
-        { name: 'Nihal', text: 'Do I really exist or am i figment of authors creation' },
+        { name: 'Viewer', text: 'Hey come on show us some truman' },
       ],
     },
     theme: {
@@ -175,7 +173,127 @@ const reels = [
       background:
         'radial-gradient(circle at top, rgba(56, 189, 248, 0.22) 0%, rgba(56, 189, 248, 0) 44%), linear-gradient(160deg, #050505 0%, #020617 100%)',
     }, 
-  }
+  },
+  {
+    id: 'db-table-with-index',
+    kind: 'reel',
+    canonicalUrl: '/reels/db-table-with-index',
+    content: {
+      question: 'Query Layer Design',
+      kicker: 'Database Series',
+      title: 'TableWithIndex',
+      summary: 'Composing heap tables and B+ trees into a cohesive query layer with honest indexed vs scan access paths.',
+      footerCaption: 'Heap tables meet B+ tree indexes',
+      link: 'https://medium.com/@adityanprasad275/building-a-database-from-scratch-tablewithindex-8d846bb4f74f'
+    },
+    engagement: {
+      comments: [
+        { name: 'Dev', text: 'honest access paths, i like it' },
+        { name: 'Truman', text: 'How do I get out of this place' },
+      ],
+    },
+    theme: {
+      accent: '#06b6d4',
+      background:
+        'radial-gradient(circle at top, rgba(6, 182, 212, 0.22) 0%, rgba(6, 182, 212, 0) 44%), linear-gradient(160deg, #050505 0%, #020617 100%)',
+    },
+  },
+  {
+    id: 'db-b-plus-tree',
+    kind: 'reel',
+    canonicalUrl: '/reels/db-b-plus-tree',
+    content: {
+      question: 'Index Design',
+      kicker: 'Database Series',
+      title: 'B+ Tree Implementation',
+      summary: 'Designing a B+ tree index for fast key lookups and efficient range scans with ordered leaf traversal.',
+      footerCaption: 'Fast lookups, efficient ranges',
+      link: 'https://medium.com/@adityanprasad275/building-a-database-from-scratch-b-plus-tree'
+    },
+    engagement: {
+      comments: [
+        { name: 'Alex', text: 'b+ trees are elegant' },
+        { name: 'Ed Harris', text: 'He\'s trying to get into blogposts now, put 10 blog posts that have never been written by a human'}
+      ],
+    },
+    theme: {
+      accent: '#8b5cf6',
+      background:
+        'radial-gradient(circle at top, rgba(139, 92, 246, 0.22) 0%, rgba(139, 92, 246, 0) 44%), linear-gradient(160deg, #050505 0%, #020617 100%)',
+    },
+  },
+  {
+    id: 'db-storing-records',
+    kind: 'reel',
+    canonicalUrl: '/reels/db-storing-records',
+    content: {
+      question: 'Storage Format',
+      kicker: 'Database Series',
+      title: 'Storing Records',
+      summary: 'Designing a simple record storage format with efficient read/write and crash consistency.',
+      footerCaption: 'Records with durability',
+      link: 'https://medium.com/@adityanprasad275/building-a-database-from-scratch-storing-records'
+    },
+    engagement: {
+      comments: [
+        { name: 'Sam', text: 'crash consistency matters' },
+        { name: 'Truman', text: '113∴1284∴21' },
+      ],
+    },
+    theme: {
+      accent: '#ec4899',
+      background:
+        'radial-gradient(circle at top, rgba(236, 72, 153, 0.22) 0%, rgba(236, 72, 153, 0) 44%), linear-gradient(160deg, #050505 0%, #020617 100%)',
+    },
+  },
+  {
+    id: 'db-pages',
+    kind: 'reel',
+    canonicalUrl: '/reels/db-pages',
+    content: {
+      question: 'Page-Based Storage',
+      kicker: 'Database Series',
+      title: 'Pages and Storage Engines',
+      summary: 'Designing a simple page-based storage engine with efficient read/write and crash consistency.',
+      footerCaption: 'Pages as the atomic unit',
+      link: 'https://medium.com/@adityanprasad275/building-a-database-from-scratch-pages'
+    },
+    engagement: {
+      comments: [
+        { name: 'Jordan', text: 'pages are the foundation' },
+        { name: 'Viewer', text: 'Woah what was that' },
+      ],
+    },
+    theme: {
+      accent: '#f59e0b',
+      background:
+        'radial-gradient(circle at top, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0) 44%), linear-gradient(160deg, #050505 0%, #020617 100%)',
+    },
+  },
+  {
+    id: 'db-kv-store',
+    kind: 'reel',
+    canonicalUrl: '/reels/db-kv-store',
+    content: {
+      question: 'Database Fundamentals',
+      kicker: 'Database Series',
+      title: 'Building a KV Store',
+      summary: 'Exploring the fundamentals of database design by building a simple persistent key-value store from scratch.',
+      footerCaption: 'The foundation: key-value persistence',
+      link: 'https://medium.com/@adityanprasad275/building-a-database-from-scratch-step-0-kv-store-d3282b554505'
+    },
+    engagement: {
+      comments: [
+        { name: 'Casey', text: 'start at the fundamentals' },
+        { name: 'Mira', text: 'How the hell did he do that, enable kill switch'}
+      ],
+    },
+    theme: {
+      accent: '#10b981',
+      background:
+        'radial-gradient(circle at top, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0) 44%), linear-gradient(160deg, #050505 0%, #020617 100%)',
+    },
+  },
 ]
 
 export default reels
