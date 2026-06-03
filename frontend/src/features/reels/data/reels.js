@@ -2,7 +2,7 @@ const reels = [
   {
     id: 'who-are-you',
     kind: 'reel',
-    canonicalUrl: '/reels/who-are-you',
+    canonicalUrl: '/',
     content: {
       question: 'Who are you?',
       kicker: 'Identity',

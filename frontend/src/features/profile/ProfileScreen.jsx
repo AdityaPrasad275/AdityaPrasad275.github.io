@@ -1,4 +1,5 @@
 
+import { useNavigate } from 'react-router-dom'
 import ProfileHeader from './components/ProfileHeader.jsx'
 import HighlightsBand from './components/HighlightsBand.jsx'
 import PostsGrid from './components/PostsGrid.jsx'
@@ -6,6 +7,7 @@ import profile from './data/profile.js'
 import reels from '../reels/data/reels.js'
 
 function ProfileScreen({ isActive, layout = 'mobile' }) {
+  const navigate = useNavigate()
   const { identity, socialProof, highlights} = profile
 
   // only take from index 6 and on, since the first 6 reels are static intro/contact reels that don't have associated posts
@@ -23,8 +25,7 @@ function ProfileScreen({ isActive, layout = 'mobile' }) {
   const handleSelectPost = (postId) => {
     const post = posts.find((p) => p.id === postId)
     if (post) {
-      window.history.pushState(null, '', post.link_to_reel)
-      window.dispatchEvent(new PopStateEvent('popstate'))
+      navigate(post.link_to_reel)
     }
   }
 

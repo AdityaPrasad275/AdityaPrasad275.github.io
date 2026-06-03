@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import CommentSheet from './CommentSheet.jsx'
 import ReelCard from './ReelCard.jsx'
 import DesktopReelScroller from './DesktopReelScroller.jsx'
@@ -7,9 +8,15 @@ import reels from '../data/reels.js'
 
 const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL || window.location.origin
 
-function getInitialReelIndex() {
-  const currentPath = window.location.pathname
-  const reelIndex = reels.findIndex((reel) => reel.canonicalUrl === currentPath)
+function normalizePathname(pathname) {
+  if (!pathname || pathname === '/') return '/'
+
+  return pathname.replace(/\/+$/, '')
+}
+
+function getReelIndexFromPath(pathname) {
+  const normalizedPath = normalizePathname(pathname)
+  const reelIndex = reels.findIndex((reel) => reel.canonicalUrl === normalizedPath)
 
   return reelIndex >= 0 ? reelIndex : 0
 }
@@ -45,14 +52,14 @@ async function copyText(value) {
 }
 
 function ReelFeed({ isActive, layout = 'mobile' }) {
-  const [activeIndex, setActiveIndex] = useState(getInitialReelIndex)
+  const location = useLocation()
+  const navigate = useNavigate()
   const [likedReels, setLikedReels] = useState({})
   const [openCommentsId, setOpenCommentsId] = useState(null)
   const [shareCopiedId, setShareCopiedId] = useState(null)
   const [endFeedMessageVisible, setEndFeedMessageVisible] = useState(false)
   const shareCopyTimerRef = useRef(null)
   const endFeedTimerRef = useRef(null)
-  const landedOnHomeRef = useRef(window.location.pathname === '/')
 
   useEffect(() => {
     return () => {
@@ -61,16 +68,29 @@ function ReelFeed({ isActive, layout = 'mobile' }) {
     }
   }, [])
 
+  const activeIndex = getReelIndexFromPath(location.pathname)
+
   useEffect(() => {
     const activeReel = reels[activeIndex]
 
     if (!activeReel?.canonicalUrl) return
-    if (landedOnHomeRef.current && activeIndex === 0) return
 
-    window.history.replaceState(null, '', activeReel.canonicalUrl)
-  }, [activeIndex])
+    if (normalizePathname(location.pathname) === activeReel.canonicalUrl) return
+
+    navigate(activeReel.canonicalUrl, { replace: true })
+  }, [activeIndex, location.pathname, navigate])
 
   const clampIndex = (index) => Math.max(0, Math.min(reels.length - 1, index))
+
+  const goToReelIndex = (nextIndex) => {
+    const clampedIndex = clampIndex(nextIndex)
+    const nextReel = reels[clampedIndex]
+
+    if (!nextReel?.canonicalUrl) return
+
+    setOpenCommentsId(null)
+    navigate(nextReel.canonicalUrl, { replace: true })
+  }
 
   const toggleLike = (reelId) => {
     setLikedReels((current) => ({
@@ -134,8 +154,7 @@ function ReelFeed({ isActive, layout = 'mobile' }) {
           reels={reels}
           activeIndex={activeIndex}
           onActiveIndexChange={(nextIndex) => {
-            setActiveIndex(clampIndex(nextIndex))
-            setOpenCommentsId(null)
+            goToReelIndex(nextIndex)
           }}
           renderReel={renderReel}
         />
@@ -145,8 +164,7 @@ function ReelFeed({ isActive, layout = 'mobile' }) {
           reels={reels}
           activeIndex={activeIndex}
           onActiveIndexChange={(nextIndex) => {
-            setActiveIndex(clampIndex(nextIndex))
-            setOpenCommentsId(null)
+            goToReelIndex(nextIndex)
           }}
           onAttemptNextBeyondEnd={showEndFeedMessage}
           renderReel={renderReel}

@@ -29,3 +29,6 @@ This repository is configured as a GitHub Pages user site, so the deployed URL i
 `https://adityaprasad275.github.io/`
 
 Pushes to `main` trigger the Pages workflow in GitHub Actions, which installs dependencies, builds `frontend/`, and publishes `frontend/dist`.
+
+Static assets that should be reachable at the site root go in `frontend/public/`.
+For example, put the resume at `frontend/public/resume.pdf` and link to it as `/resume.pdf`.

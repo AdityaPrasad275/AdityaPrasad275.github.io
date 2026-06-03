@@ -38,7 +38,7 @@ const profile = {
     {
       id: 'resume',
       label: 'Resume',
-      href: 'https://adityaprasad275.github.io/aditya-prasad-resume.pdf',
+      href: '/resume.pdf',
       icon: 'resume',
       kind: 'document',
     },
